@@ -1,0 +1,14 @@
+{
+  "description": "A bare-bones system for writing dialogue and other messages to a text box.",
+  "displayName": "CURGLAFF Dialogue Box",
+  "keywords": [
+    "gui"
+  ],
+  "name": "com.clouds.dialogue_box",
+  "version": "0.0.0",
+  "repository": {
+    "revision": "39",
+    "type": "svn",
+    "url": "svn://curglaff.dynu.net/Packages/com.clouds.dialogue_box/trunk"
+  }
+}
