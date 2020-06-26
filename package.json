@@ -5,10 +5,10 @@
     "gui"
   ],
   "name": "com.clouds.dialogue_box",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "repository": {
-    "revision": "39",
-    "type": "svn",
-    "url": "svn://curglaff.dynu.net/Packages/com.clouds.dialogue_box/trunk"
+    "revision": "fbd385a7570082edda9c485f0fba45e069f18835",
+    "type": "git",
+    "url": "https://github.com/Koopa1018/CURGLAFF-DialogueBox.git/trunk"
   }
 }
