@@ -5,10 +5,17 @@
     "gui"
   ],
   "name": "com.clouds.dialogue_box",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": {
     "revision": "fbd385a7570082edda9c485f0fba45e069f18835",
     "type": "git",
     "url": "https://github.com/Koopa1018/CURGLAFF-DialogueBox.git/trunk"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "RPG Text Box",
+      "description": "A text box which will display a series of messages, prompting for input between each and closing when done.",
+      "path": "Samples/RPG Text Box"
+    }
+  ]
 }
