@@ -17,6 +17,13 @@ namespace Clouds.UI.DialogueBox {
 		public void SubscribeClosedPermanent (System.Action action) {
 			onBoxClosed += action;
 		}
+		public void UnsubscribeOpenPermanent (System.Action action) {
+			onBoxOpened -= action;
+		}
+		public void UnsubscribeClosedPermanent (System.Action action) {
+			onBoxClosed -= action;
+		}
+
 		public void SubscribeOpenTemporary (System.Action action) {
 			onceOnBoxOpened += action;
 		}
@@ -37,5 +44,19 @@ namespace Clouds.UI.DialogueBox {
 			onceOnBoxClosed?.Invoke();
 			onceOnBoxClosed = null;
 		}
+#if UNITY_EDITOR
+		//This state persists past playmode end--so we need to clear it ourselves!~
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+		void DoClearOnPlayEnd () {
+			UnityEditor.EditorApplication.playModeStateChanged += ClearOnPlayEnd;
+		}
+
+		void ClearOnPlayEnd (UnityEditor.PlayModeStateChange state) {
+			if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode) {
+				onBoxOpened = onBoxClosed = onceOnBoxClosed = onceOnBoxOpened = null;
+			}
+			UnityEditor.EditorApplication.playModeStateChanged -= ClearOnPlayEnd;
+		}
+#endif
 	}
 }

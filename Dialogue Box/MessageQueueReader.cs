@@ -10,8 +10,12 @@ namespace Clouds.UI.DialogueBox {
 		[SerializeField] TextWindow window;
 		[SerializeField] MessageDisplayer messagePipeStart;
 
-		void Awake () {
+		void OnEnable () {
 			windowOpenerChannel.SubscribeOpenPermanent(TryOutputNext);
+		}
+
+		void OnDisable () {
+			windowOpenerChannel.UnsubscribeOpenPermanent(TryOutputNext);
 		}
 
 		/// <summary>
@@ -29,6 +33,22 @@ namespace Clouds.UI.DialogueBox {
 			
 			//return _queue.Count;
 		}
+
+		
+#if UNITY_EDITOR
+		//This state persists past playmode end--so we need to clear it ourselves!~
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+		void DoClearOnPlayEnd () {
+			UnityEditor.EditorApplication.playModeStateChanged += ClearOnPlayEnd;
+		}
+
+		void ClearOnPlayEnd (UnityEditor.PlayModeStateChange state) {
+			if (state == UnityEditor.PlayModeStateChange.ExitingPlayMode) {
+				_queue.ClearInEditor();
+			}
+			UnityEditor.EditorApplication.playModeStateChanged -= ClearOnPlayEnd;
+		}
+#endif
 
 	}
 }

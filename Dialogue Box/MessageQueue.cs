@@ -71,5 +71,11 @@ namespace Clouds.UI.DialogueBox {
 
 		public int Count => _queue.Count;
 
+#if UNITY_EDITOR
+		internal void ClearInEditor () {
+			_queue.Clear();
+		}
+#endif
+
 	}
 }
