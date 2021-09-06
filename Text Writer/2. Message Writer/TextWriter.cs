@@ -82,7 +82,7 @@ namespace Clouds.UI.TextWriting
 		}
 
 		IEnumerator writeDirect (Message message, float typeTime) {
-			//To keep track of how far we've gone into the message.
+			//To keep track of how many characters into the message we've gone.
 			int msgPos = 0;
 			//To store the characters we want to add to the message this round.
 			System.Text.StringBuilder currentCharField = new System.Text.StringBuilder(1); /*(langProfile.maxCharsPerField);*/

@@ -7,24 +7,6 @@ namespace Clouds.Strings {
 	/// </summary>
 	public static class MacroExpander {
 		/// <summary>
-		/// Attempts to replace the invocation key of a macro with the string that macro represents.
-		/// </summary>
-		/// <param name="macroKey"></param>
-		/// <param name="macroEvalTable"></param>
-		/// <returns>The expanded macro, if the key is in the dictionary; the unaltered key otherwise.</returns>
-		static string Expand (string macroKey, in Dictionary<string, string> macroEvalTable) {
-			string returner;
-
-			//Attempt to dig the key out of the dictionary.
-			if (!macroEvalTable.TryGetValue(macroKey, out returner) ) {
-				//If the key is not found, return the plain, unexpanded key instead.
-				returner = macroKey;
-			}
-
-			return returner;
-		}
-
-		/// <summary>
 		/// Evaluates a string at a position and recursively expands any macro keys found.
 		/// </summary>
 		/// <param name="containingString">The string which might contain a macro.</param>
@@ -51,7 +33,7 @@ namespace Clouds.Strings {
 			}
 
 			//This list stores evaluated keys to prevent infinitely-recursing macro expansions.
-			List<string> alreadyEvaluated = new List<string>();
+			HashSet<string> alreadyEvaluated = new HashSet<string>();
 
 			//Perform the actual evaluation.
 			return EvaluateMacrosInternal(containingString, macroTable, macroInvoker, ref alreadyEvaluated);
@@ -62,7 +44,7 @@ namespace Clouds.Strings {
 			//uint posInString,
 			in Dictionary<string, string> macroTable,
 			char macroInvoker,
-			ref List<string> alreadyEvaluated
+			ref HashSet<string> alreadyEvaluated
 		) {
 			//If the string contains no macro-invocation characters, return without logicking.
 			if (!containingString.Contains(macroInvoker.ToString())) {
@@ -98,6 +80,25 @@ namespace Clouds.Strings {
 
 			//Return the fully-evaluated result.
 			return containingString;
+		}
+
+		
+		/// <summary>
+		/// Attempts to replace the invocation key of a macro with the string that macro represents.
+		/// </summary>
+		/// <param name="macroKey"></param>
+		/// <param name="macroEvalTable"></param>
+		/// <returns>The expanded macro, if the key is in the dictionary; the unaltered key otherwise.</returns>
+		static string Expand (string macroKey, in Dictionary<string, string> macroEvalTable) {
+			string returner;
+
+			//Attempt to dig the key out of the dictionary.
+			if (!macroEvalTable.TryGetValue(macroKey, out returner) ) {
+				//If the key is not found, return the plain, unexpanded key instead.
+				returner = macroKey;
+			}
+
+			return returner;
 		}
 		
 	}

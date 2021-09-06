@@ -42,7 +42,7 @@ namespace Clouds.UI.TextWriting
 			//To store the characters we want to add to the message this round.
 			System.Text.StringBuilder currentCharField = new System.Text.StringBuilder(1); /*(langProfile.maxCharsPerField);*/
 
-			int moveDistance = 0;
+			int distanceWeMoved = 0;
 
 			//Add characters into the current field until we hit a non-diacritic.
 			do {
@@ -51,13 +51,13 @@ namespace Clouds.UI.TextWriting
 				//Except, obvs parse'm if they're in the escape sequence.
 
 				//Append the current character.
-				currentCharField.Append(message.text[msgPos + moveDistance]);
+				currentCharField.Append(message.text[msgPos + distanceWeMoved]);
 
 				//Bump the read head forward so we get the next character next time.
-				moveDistance++;
+				distanceWeMoved++;
 
 				//Break loop if we've just hit the end.
-				if (msgPos + moveDistance >= message.text.Length) {
+				if (msgPos + distanceWeMoved >= message.text.Length) {
 					break;
 				}
 			}
@@ -70,7 +70,7 @@ namespace Clouds.UI.TextWriting
 			//Add the charfield to the message. (No use StringBuilderizing this--just gonna become a string anyway.)
 			outputter.Append(charFieldOut);
 
-			return (moveDistance, charFieldOut);
+			return (distanceWeMoved, charFieldOut);
 			
 			//Consume current charfield, since we just used it.
 			//currentCharField.Clear();

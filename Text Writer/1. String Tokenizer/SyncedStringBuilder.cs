@@ -62,6 +62,12 @@ namespace Clouds.UI.TextWriting {
 			//Update the cursor delta.
 			stringBuilderDelta -= (int)thisMany;
 
+			//SANITY CHECK: If we're too far out, spill our guts, then crash.
+			if (msgPos > msg.Length) {
+				SpillGuts();
+				throw new System.IndexOutOfRangeException("Synced string builder became longer than its source message.");
+			}
+
 			//Debug.Log("Skipped forward " + thisMany + " characters.");
 			//SpillGuts();
 		}

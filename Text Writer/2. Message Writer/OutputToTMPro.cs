@@ -18,8 +18,8 @@ namespace Clouds.UI.TextWriting
 			textField.text = text;
 		}
 
-		public void Append (string msg) {
-			textField.text += msg;
+		public void Append (string textSnippet) {
+			textField.text += textSnippet;
 		}
 	}
 	
