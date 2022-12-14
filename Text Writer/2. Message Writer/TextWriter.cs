@@ -99,7 +99,7 @@ namespace Clouds.UI.TextWriting
 					//Convert it into a WriteCommand.
 					var writeCmd = (IWriteToBox)cmd;
 
-					Debug.Log("Write command of length: " + cmdRepetitions(cmd));
+					//Debug.Log("Write command of length: " + cmdRepetitions(cmd));
 
 					// //TMPro hack: insert an HTML code of the text's color.
 					// onCharacterWrite?.Invoke(string.Format(
