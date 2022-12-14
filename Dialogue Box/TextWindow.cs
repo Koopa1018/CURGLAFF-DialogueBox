@@ -9,7 +9,7 @@ namespace Clouds.UI.DialogueBox
 		[SerializeField] UnityEvent close;
 
 		bool _windowIsOpen = false;
-		public bool IsOpen => _windowIsOpen;
+		public bool isOpen => _windowIsOpen;
 
 		/// <summary>
 		/// Opens the window, assuming it's closed. Nothing will happen if it's already open, of course.
