@@ -7,7 +7,7 @@ namespace Clouds.UI.DialogueBox {
 	/// Component that starts a message being written to the screen.
 	/// </summary>
 	public class MessageDisplayer : MonoBehaviour {
-		[Tooltip("The escape code responder detects and processed escape codes in passed messages.")]
+		[Tooltip("The escape code responder detects and processes escape codes in passed messages.")]
 		[SerializeField] EscapeCodeResponder codeResponder;
 		[Tooltip("The Text Writer handles the actual process of writing the message to an output of some kind.")]
 		[SerializeField] TextWriter writer;
